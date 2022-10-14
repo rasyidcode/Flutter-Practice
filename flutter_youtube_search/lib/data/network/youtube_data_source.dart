@@ -3,6 +3,7 @@ import 'package:flutter_youtube_search/data/network/api_key.dart';
 import 'package:http/http.dart' as http;
 
 const maxSearchResult = 5;
+const apiKey = 'AIzaSyC-HG6dfEYereUU06O0iStbNXR8JyCnXVI';
 
 class YoutubeDataSource {
   final http.Client client;
