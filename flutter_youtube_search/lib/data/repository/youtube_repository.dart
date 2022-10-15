@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_youtube_search/data/model/detail/model_detail.dart';
 import 'package:flutter_youtube_search/data/model/search/model_search.dart';
 import 'package:flutter_youtube_search/data/network/youtube_data_source.dart';
 
@@ -26,11 +27,6 @@ class YoutubeRepository {
     return searchResult.items;
   }
 
-  void _cacheValues({String? query, String? nextPageToken}) {
-    _lastSearchQuery = query;
-    _nextPageToken = nextPageToken;
-  }
-
   Future<BuiltList<SearchItem>> fetchNextResultPage() async {
     if (_lastSearchQuery == null) {
       throw SearchNotInitiatedException();
@@ -42,7 +38,7 @@ class YoutubeRepository {
 
     final nextPageSearchResult = await _youtubeDataSource.searchVideos(
       query: _lastSearchQuery!,
-      pageToken: _lastSearchQuery!,
+      pageToken: _nextPageToken!,
     );
 
     if (nextPageSearchResult == null) {
@@ -60,6 +56,25 @@ class YoutubeRepository {
 
     return nextPageSearchResult.items;
   }
+
+  Future<VideoItem> fetchVideoInfo({required String id}) async {
+    final videoResponse = await _youtubeDataSource.fetchVideoInfo(id: id);
+
+    if (videoResponse == null) {
+      throw DataSourceNullException();
+    }
+
+    if (videoResponse.items.isEmpty) {
+      throw NoSuchVideoException();
+    }
+
+    return videoResponse.items.first;
+  }
+
+  void _cacheValues({String? query, String? nextPageToken}) {
+    _lastSearchQuery = query;
+    _nextPageToken = nextPageToken;
+  }
 }
 
 class DataSourceNullException implements Exception {
@@ -75,3 +90,7 @@ class SearchNotInitiatedException implements Exception {
 }
 
 class NoNextPageTokenException implements Exception {}
+
+class NoSuchVideoException implements Exception {
+  final message = 'No such video';
+}

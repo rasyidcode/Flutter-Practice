@@ -8,31 +8,26 @@ part of search_state;
 
 class _$SearchState extends SearchState {
   @override
-  final bool isLoading;
+  final BuiltList<SearchItem>? searchResults;
   @override
-  final BuiltList<SearchItem> searchResults;
+  final String? error;
   @override
-  final String error;
+  final bool? hasReachedEndOfResults;
   @override
-  final bool hasReachedEndOfResults;
+  final SearchStatus? status;
+  @override
+  final String? alertMessage;
 
   factory _$SearchState([void Function(SearchStateBuilder)? updates]) =>
       (new SearchStateBuilder()..update(updates))._build();
 
   _$SearchState._(
-      {required this.isLoading,
-      required this.searchResults,
-      required this.error,
-      required this.hasReachedEndOfResults})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'SearchState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(
-        searchResults, r'SearchState', 'searchResults');
-    BuiltValueNullFieldError.checkNotNull(error, r'SearchState', 'error');
-    BuiltValueNullFieldError.checkNotNull(
-        hasReachedEndOfResults, r'SearchState', 'hasReachedEndOfResults');
-  }
+      {this.searchResults,
+      this.error,
+      this.hasReachedEndOfResults,
+      this.status,
+      this.alertMessage})
+      : super._();
 
   @override
   SearchState rebuild(void Function(SearchStateBuilder) updates) =>
@@ -45,37 +40,37 @@ class _$SearchState extends SearchState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SearchState &&
-        isLoading == other.isLoading &&
         searchResults == other.searchResults &&
         error == other.error &&
-        hasReachedEndOfResults == other.hasReachedEndOfResults;
+        hasReachedEndOfResults == other.hasReachedEndOfResults &&
+        status == other.status &&
+        alertMessage == other.alertMessage;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, isLoading.hashCode), searchResults.hashCode),
-            error.hashCode),
-        hasReachedEndOfResults.hashCode));
+        $jc(
+            $jc($jc($jc(0, searchResults.hashCode), error.hashCode),
+                hasReachedEndOfResults.hashCode),
+            status.hashCode),
+        alertMessage.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SearchState')
-          ..add('isLoading', isLoading)
           ..add('searchResults', searchResults)
           ..add('error', error)
-          ..add('hasReachedEndOfResults', hasReachedEndOfResults))
+          ..add('hasReachedEndOfResults', hasReachedEndOfResults)
+          ..add('status', status)
+          ..add('alertMessage', alertMessage))
         .toString();
   }
 }
 
 class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
   _$SearchState? _$v;
-
-  bool? _isLoading;
-  bool? get isLoading => _$this._isLoading;
-  set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
 
   ListBuilder<SearchItem>? _searchResults;
   ListBuilder<SearchItem> get searchResults =>
@@ -92,15 +87,24 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
   set hasReachedEndOfResults(bool? hasReachedEndOfResults) =>
       _$this._hasReachedEndOfResults = hasReachedEndOfResults;
 
+  SearchStatus? _status;
+  SearchStatus? get status => _$this._status;
+  set status(SearchStatus? status) => _$this._status = status;
+
+  String? _alertMessage;
+  String? get alertMessage => _$this._alertMessage;
+  set alertMessage(String? alertMessage) => _$this._alertMessage = alertMessage;
+
   SearchStateBuilder();
 
   SearchStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _isLoading = $v.isLoading;
-      _searchResults = $v.searchResults.toBuilder();
+      _searchResults = $v.searchResults?.toBuilder();
       _error = $v.error;
       _hasReachedEndOfResults = $v.hasReachedEndOfResults;
+      _status = $v.status;
+      _alertMessage = $v.alertMessage;
       _$v = null;
     }
     return this;
@@ -125,20 +129,16 @@ class SearchStateBuilder implements Builder<SearchState, SearchStateBuilder> {
     try {
       _$result = _$v ??
           new _$SearchState._(
-              isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, r'SearchState', 'isLoading'),
-              searchResults: searchResults.build(),
-              error: BuiltValueNullFieldError.checkNotNull(
-                  error, r'SearchState', 'error'),
-              hasReachedEndOfResults: BuiltValueNullFieldError.checkNotNull(
-                  hasReachedEndOfResults,
-                  r'SearchState',
-                  'hasReachedEndOfResults'));
+              searchResults: _searchResults?.build(),
+              error: error,
+              hasReachedEndOfResults: hasReachedEndOfResults,
+              status: status,
+              alertMessage: alertMessage);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'searchResults';
-        searchResults.build();
+        _searchResults?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'SearchState', _$failedField, e.toString());
