@@ -8,24 +8,16 @@ part of detail_state;
 
 class _$DetailState extends DetailState {
   @override
-  final bool isLoading;
+  final VideoItem? videoItem;
   @override
-  final VideoItem videoItem;
+  final String? error;
   @override
-  final String error;
+  final DetailStatus? status;
 
   factory _$DetailState([void Function(DetailStateBuilder)? updates]) =>
       (new DetailStateBuilder()..update(updates))._build();
 
-  _$DetailState._(
-      {required this.isLoading, required this.videoItem, required this.error})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        isLoading, r'DetailState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(
-        videoItem, r'DetailState', 'videoItem');
-    BuiltValueNullFieldError.checkNotNull(error, r'DetailState', 'error');
-  }
+  _$DetailState._({this.videoItem, this.error, this.status}) : super._();
 
   @override
   DetailState rebuild(void Function(DetailStateBuilder) updates) =>
@@ -38,33 +30,29 @@ class _$DetailState extends DetailState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is DetailState &&
-        isLoading == other.isLoading &&
         videoItem == other.videoItem &&
-        error == other.error;
+        error == other.error &&
+        status == other.status;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, isLoading.hashCode), videoItem.hashCode), error.hashCode));
+    return $jf(
+        $jc($jc($jc(0, videoItem.hashCode), error.hashCode), status.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'DetailState')
-          ..add('isLoading', isLoading)
           ..add('videoItem', videoItem)
-          ..add('error', error))
+          ..add('error', error)
+          ..add('status', status))
         .toString();
   }
 }
 
 class DetailStateBuilder implements Builder<DetailState, DetailStateBuilder> {
   _$DetailState? _$v;
-
-  bool? _isLoading;
-  bool? get isLoading => _$this._isLoading;
-  set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
 
   VideoItemBuilder? _videoItem;
   VideoItemBuilder get videoItem =>
@@ -75,14 +63,18 @@ class DetailStateBuilder implements Builder<DetailState, DetailStateBuilder> {
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
 
+  DetailStatus? _status;
+  DetailStatus? get status => _$this._status;
+  set status(DetailStatus? status) => _$this._status = status;
+
   DetailStateBuilder();
 
   DetailStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _isLoading = $v.isLoading;
-      _videoItem = $v.videoItem.toBuilder();
+      _videoItem = $v.videoItem?.toBuilder();
       _error = $v.error;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -107,16 +99,12 @@ class DetailStateBuilder implements Builder<DetailState, DetailStateBuilder> {
     try {
       _$result = _$v ??
           new _$DetailState._(
-              isLoading: BuiltValueNullFieldError.checkNotNull(
-                  isLoading, r'DetailState', 'isLoading'),
-              videoItem: videoItem.build(),
-              error: BuiltValueNullFieldError.checkNotNull(
-                  error, r'DetailState', 'error'));
+              videoItem: _videoItem?.build(), error: error, status: status);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'videoItem';
-        videoItem.build();
+        _videoItem?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'DetailState', _$failedField, e.toString());

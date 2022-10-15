@@ -6,22 +6,35 @@ import 'package:flutter_youtube_search/ui/detail/bloc/detail.dart';
 class DetailBloc extends Bloc<DetailEvent, DetailState> {
   final YoutubeRepository _youtubeRepository;
 
-  DetailBloc(this._youtubeRepository) : super(DetailState.initial()) {
+  DetailBloc(this._youtubeRepository)
+      : super(DetailState((b) => b..status = DetailStatus.initial)) {
     on<DetailVideoShowed>(_showDetail);
   }
 
   void _showDetail(DetailVideoShowed ev, Emitter<DetailState> em) async {
-    em(DetailState.loading());
+    em(state.rebuild((p0) => p0..status = DetailStatus.loading));
 
     try {
       final videoItem = await _youtubeRepository.fetchVideoInfo(id: ev.id);
-      em(DetailState.success(videoItem));
+      em(state.rebuild((p0) => p0
+        ..status = DetailStatus.success
+        ..videoItem.replace(videoItem)));
     } on YoutubeVideoError catch (e) {
-      em(DetailState.failure(e.message));
+      em(state.rebuild((p0) => p0
+        ..status = DetailStatus.failure
+        ..error = e.message));
     } on DataSourceNullException catch (e) {
-      em(DetailState.failure(e.message));
+      em(state.rebuild((p0) => p0
+        ..status = DetailStatus.failure
+        ..error = e.message));
     } on NoSuchVideoException catch (e) {
-      em(DetailState.failure(e.message));
+      em(state.rebuild((p0) => p0
+        ..status = DetailStatus.failure
+        ..error = e.message));
+    } on Exception catch (_) {
+      em(state.rebuild((p0) => p0
+        ..status = DetailStatus.failure
+        ..error = 'Something went wrong'));
     }
   }
 
