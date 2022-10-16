@@ -1,0 +1,5 @@
+name: bloc_core_concept
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+dependencies: {bloc: ^8.1.0}
