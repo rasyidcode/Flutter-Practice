@@ -1,16 +1,16 @@
-# flutter_youtube_search
+# Flutter Youtube Search
 
-A new Flutter project.
+A simple youtube search using Youtube API Data.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+* Search youtube video
+* Endless scroll list
+* Video detail
 
-A few resources to get you started if this is your first Flutter project:
+## Preview
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![app_demo](./screenshots/fys.gif)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+Licensed under the [MIT license](https://opensource.org/licenses/MIT).
