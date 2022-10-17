@@ -11,7 +11,7 @@ A simple youtube search using Youtube API Data.
 ## Preview
 
 <!-- ![app_demo](./screenshots/demo.gif) -->
-<img src="./screenshots/demo.gif" width="50%" height="50%">
+<img src="./screenshots/demo.gif" width="40%" height="40%">
 
 ## Dependencies
 * [built_value](https://pub.dev/packages/built_value)
