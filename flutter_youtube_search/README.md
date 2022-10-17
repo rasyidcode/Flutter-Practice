@@ -10,7 +10,7 @@ A simple youtube search using Youtube API Data.
 
 ## Preview
 
-![app_demo](./screenshots/fys.gif)
+![app_demo](./screenshots/demo.gif)
 
 ## Dependencies
 * [built_value](https://pub.dev/packages/built_value)
