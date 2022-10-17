@@ -7,17 +7,17 @@ part 'channel_item.g.dart';
 
 @JsonSerializable()
 class ChannelItem {
-  final String id;
-  final ChannelSnippet snippet;
-  final ChannelStatistics statistics;
-  final ChannelTopic topicDetails;
-
   ChannelItem({
     required this.id,
     required this.snippet,
     required this.statistics,
     required this.topicDetails,
   });
+
+  final String id;
+  final ChannelSnippet snippet;
+  final ChannelStatistics statistics;
+  final ChannelTopic topicDetails;
 
   factory ChannelItem.fromJson(Map<String, dynamic> json) =>
       _$ChannelItemFromJson(json);

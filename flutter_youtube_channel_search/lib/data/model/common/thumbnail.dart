@@ -5,8 +5,14 @@ part 'thumbnail.g.dart';
 @JsonSerializable()
 class Thumbnail {
   final String url;
+  final int? width;
+  final int? height;
 
-  Thumbnail({required this.url});
+  Thumbnail({
+    required this.url,
+    this.width,
+    this.height,
+  });
 
   factory Thumbnail.fromJson(Map<String, dynamic> json) =>
       _$ThumbnailFromJson(json);

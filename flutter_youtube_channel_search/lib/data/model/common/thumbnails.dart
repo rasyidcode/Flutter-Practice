@@ -1,4 +1,4 @@
-import 'package:flutter_youtube_channel_search/data/model/search/thumbnail.dart';
+import 'package:flutter_youtube_channel_search/data/model/common/common.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'thumbnails.g.dart';

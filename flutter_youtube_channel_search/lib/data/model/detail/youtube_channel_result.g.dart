@@ -17,5 +17,5 @@ YoutubeChannelResult _$YoutubeChannelResultFromJson(
 Map<String, dynamic> _$YoutubeChannelResultToJson(
         YoutubeChannelResult instance) =>
     <String, dynamic>{
-      'items': instance.items,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };

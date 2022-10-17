@@ -5,10 +5,10 @@ import 'package:flutter_youtube_channel_search/data/repository/youtube_repositor
 import 'package:flutter_youtube_channel_search/ui/search/cubit/search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  final YoutubeRepository _youtubeRepository;
-
   SearchCubit(this._youtubeRepository)
       : super(const SearchState(status: SearchStatus.initial));
+
+  final YoutubeRepository _youtubeRepository;
 
   void searchChannel({required String query}) async {
     emit(state.copyWith(status: SearchStatus.loading));

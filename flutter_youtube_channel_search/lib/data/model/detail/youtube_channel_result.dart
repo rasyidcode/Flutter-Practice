@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'youtube_channel_result.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class YoutubeChannelResult {
   final List<ChannelItem> items;
 

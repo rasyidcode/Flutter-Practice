@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube_channel_search/data/model/search/search.dart';
+import 'package:flutter_youtube_channel_search/ui/detail/detail_page.dart';
 
 class ChannelItem extends StatefulWidget {
   const ChannelItem({Key? key, this.channelData}) : super(key: key);
@@ -15,7 +16,14 @@ class _ChannelItemState extends State<ChannelItem> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        print('tapped');
+        if (widget.channelData != null) {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  DetailPage(id: widget.channelData!.id.channelId)));
+        } else {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('No channel data')));
+        }
       },
       isThreeLine: true,
       minLeadingWidth: 0,
