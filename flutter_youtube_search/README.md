@@ -10,7 +10,8 @@ A simple youtube search using Youtube API Data.
 
 ## Preview
 
-![app_demo](./screenshots/demo.gif)
+<!-- ![app_demo](./screenshots/demo.gif) -->
+<img src="./screenshots/demo.gif" width="80%" height="80%">
 
 ## Dependencies
 * [built_value](https://pub.dev/packages/built_value)
