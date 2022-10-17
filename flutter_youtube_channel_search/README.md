@@ -1,16 +1,28 @@
-# flutter_youtube_channel_search
+# Flutter Youtube Channel Search
 
-A new Flutter project.
+A simple youtube channel search using Youtube API Data.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+* Search channel
+* Endless scroll list
+* Channel detail
 
-A few resources to get you started if this is your first Flutter project:
+## Preview
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="./screenshots/demo.gif" width="30%" height="30%">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Dependencies
+* [http](https://pub.dev/packages/http)
+* [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+* [kiwi](https://pub.dev/packages/kiwi)
+* [bloc](https://pub.dev/packages/bloc)
+* [equatable](https://pub.dev/packages/equatable)
+* [json_annotation](https://pub.dev/packages/json_annotation)
+
+## Dev Dependencies
+* [build_runner](https://pub.dev/packages/build_runner)
+* [json_serializable](https://pub.dev/packages/json_serializable)
+
+## License
+Licensed under the [MIT license](https://opensource.org/licenses/MIT).
